@@ -1,20 +1,48 @@
-
-import Die from './MainComponents/Die.jsx';
+import Die from "./MainComponents/Die.jsx";
+import React from "react";
+import { nanoid } from "nanoid";
 export default function MainComponent() {
-    return (
-      <main>
-        <section className="mainSection">
-          <Die num={1} />
-          <Die num={2} />
-          <Die num={3} />
-          <Die num={4} />
-          <Die num={5} />
-          <Die num={6} />
-          <Die num={7} />
-          <Die num={8} />
-          <Die num={9} />
-          <Die num={0} />
-        </section>
-      </main>
-    );
+  function allNewDie() {
+    const arr = [];
+    for (let i = 0; i < 10; i++) {
+      const rand = Math.ceil(Math.random() * 6);
+      const isHeld = false;
+      arr.push({ value: rand, isHeld: isHeld, id: nanoid() });
+    }
+    return arr;
+  }
+
+  function hold(id) {
+    setNum((prev) => {
+      return prev.map((die) => {
+        return die.id === id ? { ...die, isHeld: !die.isHeld } : die;
+      });
+    });
+  }
+
+
+  function roll() {
+    setNum((prev) => {
+      return prev.map((die) => {
+        return die.isHeld ? die : { ...die, value: Math.ceil(Math.random() * 6) };
+      });
+    });
+  }
+
+  const [num, setNum] = React.useState(allNewDie());
+
+  const dices = num.map(function (dice) {
+    return <Die isHeld={dice.isHeld} val={dice.value} key={dice.id} hold={() => {
+      hold(dice.id);
+    }}/>;
+  });
+
+  return (
+    <main>
+      <section className="mainSection">{dices}</section>
+      <button className="rollButton" onClick={roll}>
+        Roll
+      </button>
+    </main>
+  );
 }

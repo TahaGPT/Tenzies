@@ -29,7 +29,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .mainSection {
@@ -47,13 +47,56 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.7
-  rem;
+  font-size: 1.7rem;
   color: #000000;
   cursor: pointer;
   border:none;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
 }
 
 
+.rollButton {
+  width: 150px;
+  height: 50px;
+  font-weight: bold;
+  background-color: #ed0799;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  color: #000000;
+  cursor: pointer;
+  border:none;
+  box-shadow: 0 4px 6px rgba(236, 235, 235, 0.1);
+  transition: background-color 0.5s ease;
+}
 
+.rollButton:active {
+  background-color: #b1066c;
+  box-shadow: 0 2px 4px rgba(236, 235, 235, 0.1);
+  transform: translateY(2px);
+  transition: background-color 0.1s ease, transform 0.1s ease;
+}
+
+.rollButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(237, 7, 153, 0.5);
+}
+.rollButton:hover {
+  background-color: #6b06d0;
+}
+
+.dieComp:active {
+  background-color: #1b6f7c;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(2px);
+  transition: background-color 0.1s ease, transform 0.1s ease;
+}
+
+.dieComp.isHeld {
+  background-color: #f0c040;
+  color: #000000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
